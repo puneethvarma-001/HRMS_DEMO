@@ -26,13 +26,15 @@ export class RBACEngine {
    * Check if user has permission to perform action on resource
    * @param context User context with roles and attributes
    * @param permission Permission to check
+   * @param currentTime Optional current time for contract validation (defaults to now)
    * @returns true if user has permission, false otherwise
    */
-  hasPermission(context: UserContext, permission: Permission): boolean {
+  hasPermission(context: UserContext, permission: Permission, currentTime?: Date): boolean {
     // Outsourcing users have time-bound access
     if (context.isOutsourcing && context.contractEndDate) {
+      const now = currentTime || new Date();
       const contractEnd = new Date(context.contractEndDate);
-      if (contractEnd < new Date()) {
+      if (contractEnd < now) {
         return false; // Contract expired
       }
     }

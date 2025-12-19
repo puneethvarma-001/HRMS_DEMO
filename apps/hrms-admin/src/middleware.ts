@@ -30,10 +30,16 @@ export function middleware(request: NextRequest) {
   // Add security headers
   const response = NextResponse.next();
 
-  // Content Security Policy
+  // Content Security Policy - strict configuration for enterprise HRMS
+  // Note: In production, replace 'unsafe-inline' with nonce-based CSP
   response.headers.set(
     'Content-Security-Policy',
-    "default-src 'self'; script-src 'self' 'unsafe-eval' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.hrms.example.com"
+    "default-src 'self'; " +
+    "script-src 'self' 'unsafe-eval'; " + // TODO: Remove unsafe-eval, use nonces for inline scripts
+    "style-src 'self' 'unsafe-inline'; " + // TODO: Use nonces for inline styles
+    "img-src 'self' data: https:; " +
+    "font-src 'self' data:; " +
+    "connect-src 'self' https://api.hrms.example.com"
   );
 
   // Other security headers

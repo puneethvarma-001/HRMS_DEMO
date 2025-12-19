@@ -21,8 +21,8 @@ interface ThemeProviderProps {
 
 export function ThemeProvider({ children, defaultConfig }: ThemeProviderProps) {
   const [config, setConfig] = useState<ThemeConfig>({
-    mode: defaultConfig?.mode || 'dark', // Dark mode by default
-    density: defaultConfig?.density || 'comfortable',
+    mode: defaultConfig?.mode ?? 'dark', // Defaults to dark mode when not specified
+    density: defaultConfig?.density ?? 'comfortable',
     tenantColors: defaultConfig?.tenantColors,
   });
 

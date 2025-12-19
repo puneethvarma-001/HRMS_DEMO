@@ -152,6 +152,9 @@ export function createAppTheme(config: ThemeConfig): Theme {
             borderRadius: tokens.radius.base,
           },
         },
+        defaultProps: {
+          size: density === 'compact' ? 'small' : 'medium',
+        },
       },
       MuiCard: {
         styleOverrides: {
@@ -161,11 +164,6 @@ export function createAppTheme(config: ThemeConfig): Theme {
         },
       },
       MuiTextField: {
-        defaultProps: {
-          size: density === 'compact' ? 'small' : 'medium',
-        },
-      },
-      MuiButton: {
         defaultProps: {
           size: density === 'compact' ? 'small' : 'medium',
         },
