@@ -16,7 +16,11 @@ export default function DashboardPage() {
   const { data: session } = useSession()
   const { data: stats, mutate } = useSWR("/api/dashboard/stats", fetcher)
 
-  const isAdmin = session?.user?.role === "SuperAdmin" || session?.user?.role === "HR"
+  // Support both legacy role names and new RBAC roles
+  const userRole = session?.user?.role
+  const userRoles = session?.user?.roles || []
+  const isAdmin = userRole === "SuperAdmin" || userRole === "HR" || 
+                  userRole === "AMP" || userRoles.includes("AMP") || userRoles.includes("HR")
 
   return (
     <DashboardLayout>
