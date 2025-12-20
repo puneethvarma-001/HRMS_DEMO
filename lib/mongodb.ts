@@ -1,9 +1,12 @@
 import mongoose from "mongoose"
 
-const MONGODB_URI = process.env.MONGODB_URI!
+const MONGODB_URI = process.env.MONGODB_URI
 
-if (!MONGODB_URI) {
-  throw new Error("Please define the MONGODB_URI environment variable")
+// In dummy mode, MongoDB is not required
+const isDummyMode = process.env.OAUTH2_DUMMY_MODE === 'true'
+
+if (!MONGODB_URI && !isDummyMode) {
+  throw new Error("Please define the MONGODB_URI environment variable (or set OAUTH2_DUMMY_MODE=true for demo mode)")
 }
 
 interface MongooseCache {
@@ -22,6 +25,15 @@ if (!global._mongoose) {
 }
 
 export async function connectDB() {
+  // In dummy mode, skip actual MongoDB connection
+  if (isDummyMode) {
+    return null
+  }
+
+  if (!MONGODB_URI) {
+    throw new Error("MONGODB_URI is required when not in dummy mode")
+  }
+
   if (cached.conn) {
     return cached.conn
   }
