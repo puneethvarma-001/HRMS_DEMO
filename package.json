@@ -73,11 +73,14 @@
     "zod": "3.25.67"
   },
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.3",
     "@tailwindcss/postcss": "^4.1.9",
     "@types/bcryptjs": "^3.0.0",
     "@types/node": "^22",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.35",
     "postcss": "^8.5",
     "tailwindcss": "^4.1.9",
     "ts-node": "^10.9.2",

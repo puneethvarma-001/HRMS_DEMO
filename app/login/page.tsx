@@ -96,8 +96,13 @@ export default function LoginPage() {
               </Button>
             </form>
             <div className="mt-4 text-center text-sm text-muted-foreground">
-              <p>Demo credentials:</p>
-              <p className="font-mono text-xs">admin@company.com / admin123</p>
+              <p className="font-semibold">Demo credentials:</p>
+              <div className="mt-2 space-y-1 font-mono text-xs">
+                <p>AMP: admin@demo.com / admin123</p>
+                <p>HR: hr@demo.com / hr123</p>
+                <p>Manager: manager@demo.com / manager123</p>
+                <p>Employee: employee@demo.com / employee123</p>
+              </div>
             </div>
           </CardContent>
         </Card>
